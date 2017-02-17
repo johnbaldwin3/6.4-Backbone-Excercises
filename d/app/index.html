@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
     <title>d</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/app.css">
   </head>
   <body>
@@ -15,14 +16,32 @@
       <div class="form-group">
         <!--insert form temp here-->
       </div>
-      <div class="bookmark-titles">
-        <ul class="bookmarks">
-          <li class="bookmark-item">
-            <a href="#">title</a>
-          </li>
-          <li class="bookmark-tag"><a href="#">tag</a></li>
-        </ul>
-      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <h4>Bookmark List</h4>
+          <div class="bookmark-titles">
+
+          </div>
+        </div>
+        <div class="col-md-3 col-offset-md-2">
+          <h4>Tag Sorter</h4>
+          <div class="optlist"></div>
+          <!-- <select class="js-example-basic-single">
+            <!<option value="AL">Alabama</option>
+            <option value="WY">Wyoming</option> -->
+          <!-- </select> -->
+        </div>
+        <div class="col-md-4">
+          <h4>Sorted Bookmarks</h4>
+          <div class="sorted">
+            <ul class="sorted-marks">
+              <!-- <li class="indiv-mark">
+
+              </li> -->
+            </ul>
+          </div>
+        </div>
+      </div> <!--row end-->
     </div>
 
     <script src="js/bundle.js"></script>

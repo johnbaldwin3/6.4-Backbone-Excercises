@@ -13,8 +13,14 @@ var BookmarkCollection = Backbone.Collection.extend({
 
 });
 
+// var BookmarkEditedCollection = Backbone.Collection.extend({
+//   model: BookmarkModel,
+//   // url:'https://tiny-lasagna-server.herokuapp.com/collections/bookmark/'
+// });
+
 
 module.exports = {
   BookmarkModel: BookmarkModel,
-  BookmarkCollection: BookmarkCollection
+  BookmarkCollection: BookmarkCollection,
+  // BookmarkEditedCollection: BookmarkEditedCollection
 }
