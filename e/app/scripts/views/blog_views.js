@@ -4,7 +4,7 @@ var Backbone = require('backbone');
 var blogListTemplate = require('../../templates/blog-list.hbs');
 var blogSelectedTemp = require('../../templates/selected-blog.hbs');
 var createBlogTemp = require('../../templates/blog-form.hbs');
-
+var editBlogTemp = require('../../templates/blog_edit.hbs');
 //Mady is a true American hero for showing me this function
 $.fn.serializeObject = function() {
    return this.serializeArray().reduce(function(acum, i) {
@@ -48,7 +48,8 @@ var PickedBlogView = Backbone.View.extend({
   className: "jumbotron",
   template: blogSelectedTemp,
   events: {
-    'click .delete-blog': 'deleteBlog'
+    'click .delete-blog': 'deleteBlog',
+    //'click #edit-blog': 'editBlog'
   },
   initialize: function() {
     this.listenTo(this.model, 'destroy', this.remove);
@@ -64,7 +65,6 @@ var PickedBlogView = Backbone.View.extend({
     // var blogListings = new BlogTitlesView({model: blog});
     // //console.log('blogListings', blogListings);
     // this.$el.prepend(blogListings.render().el);
-
   }
 
 });
@@ -85,14 +85,66 @@ var CreateBlogView = Backbone.View.extend({
     var newBlog = this.$el.serializeObject();
     console.log(newBlog);
     this.collection.create(newBlog);
-    this.$el.val('');
+    console.log('clear');
+    $('#blogTitle').val('');
+    $('#blogAuthor').val('');
+    $('#blogBody').val('');
   }
 });
+
+
+
+var EditBlogView = Backbone.View.extend({
+  tagName: 'form',
+  className: 'edit-form-save',
+  events: {
+    'click #edit-blog' : 'editBlog',
+    'submit': 'createBlog'
+  },
+  template: editBlogTemp,
+  render: function() {
+    this.$el.html(this.template());
+    return this;
+  },
+  editBlog: function(event) {
+    event.preventDefault();
+    var editBlog = this.$el.serializeObject();
+    console.log('hello edit', editBlog);
+    this.template(this.model.toJSON());
+    this.$el.html(pickedRenderedBlog);
+
+  },
+  createBlog: function(event) {
+    event.preventDefault();
+    var newBlog = this.$el.serializeObject();
+    console.log(newBlog);
+    this.collection.create(newBlog);
+    console.log('clear');
+    $('#blogTitle').val('');
+    $('#blogAuthor').val('');
+    $('#blogBody').val('');
+  }
+});
+
+var PopulateEditFormView = Backbone.View.extend({
+  tagName: 'form',
+  className: 'edit-form-save',
+  events: {
+    'click #edit-button': 'editTheBlog'
+  },
+  render: function() {
+    return this;
+  },
+  editTheBlog: function() {
+    
+  }
+
+})
 
 module.exports = {
   BlogListView: BlogListView,
   BlogTitlesView: BlogTitlesView,
   PickedBlogView: PickedBlogView,
-  CreateBlogView: CreateBlogView
-
+  CreateBlogView: CreateBlogView,
+  EditBlogView: EditBlogView
 }

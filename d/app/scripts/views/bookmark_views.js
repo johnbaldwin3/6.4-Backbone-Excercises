@@ -18,7 +18,7 @@ $.fn.serializeObject = function() {
    }, {});
  };
 
-var BookmarkListView = Backbone.View.extend({
+var BookmarkFormView = Backbone.View.extend({
   tagName: 'form',
   className: 'bookmark-form',
   events: {
@@ -71,7 +71,7 @@ var BookmarkDetailView = Backbone.View.extend({
      //console.log("renderBookmarkLister",renderBookmarkLister);
      this.$el.html(renderBookmarkLister);
      return this;
-   }
+   
 
  });
 
@@ -159,7 +159,7 @@ var BookmarkDetailView = Backbone.View.extend({
 
 
 module.exports = {
-  BookmarkListView: BookmarkListView,
+  BookmarkFormView: BookmarkFormView,
   BookmarkDisplayView: BookmarkDisplayView,
   BookmarkDetailView: BookmarkDetailView,
   OptionListView: OptionListView,

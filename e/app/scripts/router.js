@@ -3,16 +3,19 @@ var Backbone = require('backbone');
 
 var views = require('./views/blog_views');
 var models = require('./models/blog_models');
-
+var createBlogTemp = require('../templates/blog-form.hbs');
 
 var BlogRouter = Backbone.Router.extend({
   routes: {
   '' : 'index',
-  'blog/:id/': 'viewBlog'
+  'blog/:id/': 'viewBlog',
+  'edit/:id/': 'editBlog'
 },
 initialize: function() {
   this.blogListItems = new models.BlogCollection();
   console.log('this.bli', this.blogListItems);
+  this.blogEditItems = new models.BlogCollection();
+  console.log('editBI:', this.blogEditItems);
 },
 index: function(){
   var blogList = new views.BlogListView({collection: this.blogListItems});
@@ -28,6 +31,21 @@ viewBlog: function(id) {
   console.log('opBlog', openedBlog);
   var pickedBlog = new views.PickedBlogView({model: openedBlog});
     $('.blog-ul').html(pickedBlog.render().el);
+
+},
+editBlog: function(id) {
+  console.log('editme', 'id: ' + id);
+  var editBlog = this.blogEditItems.findWhere({'_id': id});
+  console.log('editblog', editBlog);
+  $('.blog-ul').hide();
+  //$('.blog-create-form-holder').hide();
+  $('.create-title').text("Edit Blog Post");
+  var blogToEdit = new models.BlogCollection({model: editBlog});
+  console.log('bedit', blogToEdit);
+  var blogEditForm = new views.EditBlogView({collection: this.blogEditItems});
+  $('.blog-create-form-holder').html(blogEditForm.render().el);
+  console.log('$blog', $('#blogTitle').val());
+
 
 }
 

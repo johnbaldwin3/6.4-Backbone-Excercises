@@ -3,7 +3,7 @@ var Backbone = require('backbone');
 
 
 var BookmarkModel = Backbone.Model.extend({
-  idAttribute : "_id"
+  idAttribute : '_id'
 
 });
 

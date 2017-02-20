@@ -4,8 +4,8 @@ var Backbone = require('backbone');
 var views = require('./views/post_view');
 var models = require('./models/post_model');
 
-var blogPostTemp = require('../templates/blog_post.hbs');
-var blogListTemp = require('../templates/blog_list.hbs');
+// var blogPostTemp = require('../templates/blog_post.hbs');
+// var blogListTemp = require('../templates/blog_list.hbs');
 
 var BlogRouter = Backbone.Router.extend({
   routes: {

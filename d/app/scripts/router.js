@@ -13,7 +13,7 @@ var BookmarkRouter = Backbone.Router.extend({
     this.filteredBookmarks = new models.BookmarkCollection();
   },
   index: function(){
-    var bookmarkMaker = new views.BookmarkListView({collection: this.bookmarkList});
+    var bookmarkMaker = new views.BookmarkFormView({collection: this.bookmarkList});
     console.log('bookList', bookmarkMaker);
     $('.submit-form-holder').html(bookmarkMaker.render().el);
     //this.bookmarkList.fetch();
@@ -30,7 +30,7 @@ var BookmarkRouter = Backbone.Router.extend({
     optionListings.filteredCollection = this.filteredBookmarks;
     $('.optlist').append(optionListings.render().el);
 
-    var bookmarkFiltered = new views.BookmarkFilteredView({collection: this.filteredBookmarks});
+    var bookmarkFiltered = new views.BookmarkDisplayView({collection: this.filteredBookmarks});
       $('.sorted-marks').append(bookmarkFiltered.render().el);
       bookmarkFiltered.listenTo(this.filteredBookmarks, 'reset', bookmarkFiltered.render);
     //

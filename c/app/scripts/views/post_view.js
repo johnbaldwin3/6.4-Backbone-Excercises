@@ -58,7 +58,7 @@ var blogListTemp = require('../../templates/blog_list.hbs');
 
  module.exports = {
    BlogListView: BlogListView,
-   BlogPostView: BlogPostView,
+   BlogDetailView: BlogPostView,
    BlogDetailView: BlogDetailView
 
  }
