@@ -103,7 +103,7 @@ var EditBlogView = Backbone.View.extend({
   },
   template: editBlogTemp,
   render: function() {
-    this.$el.html(this.template());
+    this.$el.html(this.template(this.model.toJSON()));
     return this;
   },
   editBlog: function(event) {
@@ -112,6 +112,7 @@ var EditBlogView = Backbone.View.extend({
     console.log('hello edit', editBlog);
     this.template(this.model.toJSON());
     this.$el.html(pickedRenderedBlog);
+    //just need to save model here.
 
   },
   createBlog: function(event) {
@@ -126,20 +127,20 @@ var EditBlogView = Backbone.View.extend({
   }
 });
 
-var PopulateEditFormView = Backbone.View.extend({
-  tagName: 'form',
-  className: 'edit-form-save',
-  events: {
-    'click #edit-button': 'editTheBlog'
-  },
-  render: function() {
-    return this;
-  },
-  editTheBlog: function() {
-    
-  }
+// var PopulateEditFormView = Backbone.View.extend({
+//   tagName: 'form',
+//   className: 'edit-form-save',
+//   events: {
+//     'click #edit-button': 'editTheBlog'
+//   },
+//   render: function() {
+//     return this;
+//   },
+//   editTheBlog: function() {
+//
+//   }
 
-})
+// })
 
 module.exports = {
   BlogListView: BlogListView,

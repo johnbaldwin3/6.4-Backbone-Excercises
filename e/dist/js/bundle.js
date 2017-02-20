@@ -48,8 +48,8 @@ var BlogRouter = Backbone.Router.extend({
 initialize: function() {
   this.blogListItems = new models.BlogCollection();
   console.log('this.bli', this.blogListItems);
-  this.blogEditItems = new models.BlogCollection();
-  console.log('editBI:', this.blogEditItems);
+  // this.blogEditItems = new models.BlogCollection();
+  // console.log('editBI:', this.blogEditItems);
 },
 index: function(){
   var blogList = new views.BlogListView({collection: this.blogListItems});
@@ -69,14 +69,14 @@ viewBlog: function(id) {
 },
 editBlog: function(id) {
   console.log('editme', 'id: ' + id);
-  var editBlog = this.blogEditItems.findWhere({'_id': id});
+  var editBlog = this.blogListItems.findWhere({'_id': id});
   console.log('editblog', editBlog);
   $('.blog-ul').hide();
   //$('.blog-create-form-holder').hide();
   $('.create-title').text("Edit Blog Post");
-  var blogToEdit = new models.BlogCollection({model: editBlog});
-  console.log('bedit', blogToEdit);
-  var blogEditForm = new views.EditBlogView({collection: this.blogEditItems});
+  // var blogToEdit = new models.BlogCollection({model: editBlog});
+  // console.log('bedit', blogToEdit);
+  var blogEditForm = new views.EditBlogView({model: editBlog});
   $('.blog-create-form-holder').html(blogEditForm.render().el);
   console.log('$blog', $('#blogTitle').val());
 
@@ -196,7 +196,7 @@ var EditBlogView = Backbone.View.extend({
   },
   template: editBlogTemp,
   render: function() {
-    this.$el.html(this.template());
+    this.$el.html(this.template(this.model.toJSON()));
     return this;
   },
   editBlog: function(event) {
@@ -205,6 +205,7 @@ var EditBlogView = Backbone.View.extend({
     console.log('hello edit', editBlog);
     this.template(this.model.toJSON());
     this.$el.html(pickedRenderedBlog);
+    //just need to save model here.
 
   },
   createBlog: function(event) {
@@ -219,20 +220,20 @@ var EditBlogView = Backbone.View.extend({
   }
 });
 
-var PopulateEditFormView = Backbone.View.extend({
-  tagName: 'form',
-  className: 'edit-form-save',
-  events: {
-    'click #edit-button': 'editTheBlog'
-  },
-  render: function() {
-    return this;
-  },
-  editTheBlog: function() {
-    
-  }
+// var PopulateEditFormView = Backbone.View.extend({
+//   tagName: 'form',
+//   className: 'edit-form-save',
+//   events: {
+//     'click #edit-button': 'editTheBlog'
+//   },
+//   render: function() {
+//     return this;
+//   },
+//   editTheBlog: function() {
+//
+//   }
 
-})
+// })
 
 module.exports = {
   BlogListView: BlogListView,
